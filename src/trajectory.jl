@@ -43,7 +43,7 @@ end
 #         T = Matrix{Float64}(I, 4, 4)
 #         T[1:3, 4] = traj_data[i, 3:5]
 #         x, y, z, w = traj_data[i, 6:9]
-#         T[1:3, 1:3] = Array(Quat(w,x,y,z))
+#         T[1:3, 1:3] = Array(QuatRotation(w,x,y,z))
 #         poses[ids[i]] = T
 #     end
 #     return Trajectory(n, fixed_id, ids, poses)

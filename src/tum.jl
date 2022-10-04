@@ -222,7 +222,7 @@ function load_tum_traj(f_path::String; time_factor::Int64=1000000, x_idx=2)
             xyzqxqyqzqw = [parse(Float64, x) for x = split_strs[x_idx:x_idx+6]]
             qx, qy, qz, qw = xyzqxqyqzqw[4:7]
             # convert to transformation matrix
-            R = Rotations.Quat(qw, qx, qy, qz)
+            R = Rotations.QuatRotation(qw, qx, qy, qz)
             T = Matrix{Float64}(LinearAlgebra.I, 4, 4)
             T[1:3, 1:3] = R
             T[1:3, 4] = xyzqxqyqzqw[1:3]
@@ -274,7 +274,7 @@ function save_tum_traj(
             end
 
             tx, ty, tz, = T[1:3, 4]
-            q = Rotations.Quat(T[1:3, 1:3])
+            q = Rotations.QuatRotation(T[1:3, 1:3])
             qx = q.x
             qy = q.y
             qz = q.z
